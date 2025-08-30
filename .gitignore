@@ -435,3 +435,6 @@ MigrationBackup/
 
 # Fody - auto-generated XML schema
 FodyWeavers.xsd
+save.md
+Gemini.md
+prompt_th.md

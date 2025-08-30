@@ -1,6 +1,7 @@
 #include "math_util.h"
 #include <cmath>
 #include <algorithm>
+#include <numbers>
 #include <effolkronium/random.hpp>
 #include <glm/gtx/matrix_decompose.hpp>
 
@@ -11,7 +12,7 @@ namespace Bamboo
 	
 	float MathUtil::pi()
 	{
-		return 3.1415926f;
+		return std::numbers::pi_v<float>;
 	}
 
 	float MathUtil::clamp(float val, float min, float max)

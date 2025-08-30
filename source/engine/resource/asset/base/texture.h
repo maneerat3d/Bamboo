@@ -1,6 +1,7 @@
 #pragma once
 
 #include "engine/core/vulkan/vulkan_util.h"
+#include <cereal/types/polymorphic.hpp>
 #include <cereal/access.hpp>
 
 enum class ETextureType
@@ -43,19 +44,19 @@ namespace Bamboo
 
 	private:
 		friend class cereal::access;
-		template<class Archive>
+				template<class Archive>
 		void serialize(Archive& ar)
 		{
-			ar(cereal::make_nvp("width", m_width));
-			ar(cereal::make_nvp("height", m_height));
-			ar(cereal::make_nvp("min_filter", m_min_filter));
-			ar(cereal::make_nvp("mag_filter", m_mag_filter));
-			ar(cereal::make_nvp("address_mode_u", m_address_mode_u));
-			ar(cereal::make_nvp("address_mode_v", m_address_mode_v));
-			ar(cereal::make_nvp("address_mode_w", m_address_mode_w));
-			ar(cereal::make_nvp("texture_type", m_texture_type));
-			ar(cereal::make_nvp("pixel_type", m_pixel_type));
-			ar(cereal::make_nvp("image_data", m_image_data));
+			ar(cereal::make_nvp("width", m_width),
+				cereal::make_nvp("height", m_height),
+				cereal::make_nvp("min_filter", reinterpret_cast<int&>(m_min_filter)),
+				cereal::make_nvp("mag_filter", reinterpret_cast<int&>(m_mag_filter)),
+				cereal::make_nvp("address_mode_u", reinterpret_cast<int&>(m_address_mode_u)),
+				cereal::make_nvp("address_mode_v", reinterpret_cast<int&>(m_address_mode_v)),
+				cereal::make_nvp("address_mode_w", reinterpret_cast<int&>(m_address_mode_w)),
+				cereal::make_nvp("texture_type", m_texture_type),
+				cereal::make_nvp("pixel_type", m_pixel_type),
+				cereal::make_nvp("image_data", m_image_data));
 		}
 	};
 }
